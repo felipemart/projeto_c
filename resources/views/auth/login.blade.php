@@ -1,88 +1,50 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<x-guest-layout>
+    <!-- ===== Main Content Start ===== -->
+    <main>
+        <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+            <div
+                class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                <div class="flex flex-wrap items-center">
+                    <div class="hidden w-full xl:block xl:w-1/2">
+                        <div class="px-26 py-17.5 text-center">
+                            <a class="mb-5.5 inline-block" href="index.html">
+                                <img
+                                    class="hidden dark:block"
+                                    src="./images/logo/logo.svg"
+                                    alt="Logo" />
+                                <img
+                                    class="dark:hidden"
+                                    src="./images/logo/logo-dark.svg"
+                                    alt="Logo" />
+                            </a>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+                            <p class="font-medium 2xl:px-20">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                suspendisse.
+                            </p>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body
-    x-data="{ page: 'signin', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
-    x-init="
-          darkMode = JSON.parse(localStorage.getItem('darkMode'));
-          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
-    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
-    <!-- ===== Preloader Start ===== -->
-    <div
-        x-show="loaded"
-        x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
-        class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black">
-        <div
-            class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
-    </div>
-    <!-- ===== Preloader End ===== -->
-
-    <!-- ===== Page Wrapper Start ===== -->
-    <div class="flex h-screen overflow-hidden">
-        <!-- ===== Sidebar Start ===== -->
-
-        <!-- ===== Sidebar End ===== -->
-
-        <!-- ===== Content Area Start ===== -->
-        <div
-            class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-
-            <!-- ===== Main Content Start ===== -->
-            <main>
-                <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-
-                    <div
-                        class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-                        <div class="flex flex-wrap items-center">
-                            <div class="hidden w-full xl:block xl:w-1/2">
-                                <div class="px-26 py-17.5 text-center">
-                                    <a class="mb-5.5 inline-block" href="index.html">
-                                        <img
-                                            class="hidden dark:block"
-                                            src="./images/logo/logo.svg"
-                                            alt="Logo" />
-                                        <img
-                                            class="dark:hidden"
-                                            src="./images/logo/logo-dark.svg"
-                                            alt="Logo" />
-                                    </a>
-
-                                    <p class="font-medium 2xl:px-20">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                                        suspendisse.
-                                    </p>
-
-                                    <span class="mt-15 inline-block">
+                            <span class="mt-15 inline-block">
                                         <img
                                             src="./images/illustration/illustration-03.svg"
                                             alt="illustration" />
                                     </span>
-                                </div>
-                            </div>
-                            <div
-                                class="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
-                                <div class="w-full p-4 sm:p-12.5 xl:p-17.5">
-                                    <form method="POST" action="{{ route('login') }}">
-                                        @csrf
-                                        <div class="mb-4">
-                                            <x-input-label for="email" :value="__('Email')" class="mb-2.5 block font-medium text-black dark:text-white" />
-                                            <div class="relative">
-                                                <x-text-input id="email"
-                                                    class="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                                    type="email" name="email" :value="old('email')"
-                                                    placeholder="Enter your email"
-                                                    required autofocus autocomplete="username" />
-                                                <span class="absolute right-4 top-4">
+                        </div>
+                    </div>
+                    <div
+                        class="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+                        <div class="w-full p-4 sm:p-12.5 xl:p-17.5">
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
+                                <div class="mb-4">
+                                    <x-input-label for="email" :value="__('Email')" class="mb-2.5 block font-medium text-black dark:text-white" />
+                                    <div class="relative">
+                                        <x-text-input id="email"
+                                                      class="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                                      type="email" name="email" :value="old('email')"
+                                                      placeholder="Enter your email"
+                                                      required autofocus autocomplete="username" />
+                                        <span class="absolute right-4 top-4">
                                                     <svg
                                                         class="fill-current"
                                                         width="22"
@@ -97,22 +59,22 @@
                                                         </g>
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </div>
+                                    </div>
+                                </div>
 
-                                        <div class="mb-6">
-                                            <x-input-label for="password" :value="__('Password')" />
-                                            <div class="relative">
+                                <div class="mb-6">
+                                    <x-input-label for="password" :value="__('Password')" />
+                                    <div class="relative">
 
-                                                <x-text-input id="password"
-                                                    type="password"
-                                                    name="password"
-                                                    placeholder="6+ Characters, 1 Capital letter"
-                                                    class="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                                    required autocomplete="current-password" />
+                                        <x-text-input id="password"
+                                                      type="password"
+                                                      name="password"
+                                                      placeholder="6+ Characters, 1 Capital letter"
+                                                      class="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                                      required autocomplete="current-password" />
 
 
-                                                <span class="absolute right-4 top-4">
+                                        <span class="absolute right-4 top-4">
                                                     <svg
                                                         class="fill-current"
                                                         width="22"
@@ -130,37 +92,33 @@
                                                         </g>
                                                     </svg>
                                                 </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-5">
-                                            <input
-                                                type="submit"
-                                                value="Sign In"
-                                                class="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90" />
-                                        </div>
-
-                                    </form>
-                                    @if (Route::has('password.request'))
-                                        <div class="mt-6 text-center">
-                                            <p class="font-medium">
-
-                                                <a href="{{ route('password.request') }}" class="text-primary">{{ __('Forgot your password?') }}</a>
-                                            </p>
-                                        </div>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
+
+                                <div class="mb-5">
+                                    <input
+                                        type="submit"
+                                        value="Sign In"
+                                        class="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90" />
+                                </div>
+
+                            </form>
+                            @if (Route::has('password.request'))
+                                <div class="mt-6 text-center">
+                                    <p class="font-medium">
+
+                                        <a href="{{ route('password.request') }}" class="text-primary">{{ __('Forgot your password?') }}</a>
+                                    </p>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                    <!-- ====== Forms Section End -->
                 </div>
-            </main>
-            <!-- ===== Main Content End ===== -->
+            </div>
+            <!-- ====== Forms Section End -->
         </div>
-        <!-- ===== Content Area End ===== -->
-    </div>
-    <!-- ===== Page Wrapper End ===== -->
-</body>
+    </main>
+    <!-- ===== Main Content End ===== -->
 
-</html>
+</x-guest-layout>
+
